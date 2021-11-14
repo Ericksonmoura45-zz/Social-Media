@@ -45,15 +45,15 @@ Widget _buildUser() {
   return Row(
     children: [
       CircleAvatar(
-        backgroundImage: NetworkImage(
-            'https://static.vecteezy.com/ti/vetor-gratis/p1/2275818-avatar-feminino-mulher-perfil-icone-para-rede-vetor.jpg'),
+        backgroundImage:
+            NetworkImage('https://freesvg.org/img/abstract-user-flat-3.png'),
         minRadius: 15,
       ),
       SizedBox(width: 20),
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Fulano de Tal'),
+          Text('Usuário'),
           Text(DateFormat.yMd().format(DateTime.now())),
         ],
       )

@@ -22,6 +22,50 @@ class FeedPage extends StatelessWidget {
           );
         },
       ),
+      drawer: Drawer(
+        //Menu superior
+        child: ListView(
+          children: [
+            UserAccountsDrawerHeader(
+              accountName: Text('Erickson'),
+              accountEmail: Text('Erickson@email.com'),
+              currentAccountPicture: CircleAvatar(
+                child: Text('E'),
+                backgroundColor: Colors.amber,
+              ),
+            ),
+            ListTile(
+              //opções do menu superior
+              title: Text('Inicio'),
+              trailing: Icon(Icons.home),
+              onTap: () {
+                Navigator.pop(context); //fecha drawer ao clicar fora
+              },
+            ),
+            ListTile(
+              title: Text('Amigos'),
+              trailing: Icon(Icons.person),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Loja'),
+              trailing: Icon(Icons.store),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Configurações'),
+              trailing: Icon(Icons.settings),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            )
+          ],
+        ),
+      ),
     );
   }
 

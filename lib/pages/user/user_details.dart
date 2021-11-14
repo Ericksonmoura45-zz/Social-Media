@@ -10,6 +10,6 @@ class UserDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = HomeController();
-    return Scaffold();
+    return Scaffold(); //configurar página do perfil do usuário
   }
 }
