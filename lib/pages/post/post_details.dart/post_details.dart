@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:posts/models/post.dart';
 import 'package:posts/pages/home/home_controller.dart';
+import 'package:posts/models/user.dart';
 
 class PostDetail extends StatelessWidget {
   final Post post;
@@ -44,15 +45,16 @@ Widget _buildUser() {
   return Row(
     children: [
       CircleAvatar(
-        backgroundImage: NetworkImage(
-            'https://static.vecteezy.com/ti/vetor-gratis/p1/2275818-avatar-feminino-mulher-perfil-icone-para-rede-vetor.jpg'),
+        backgroundImage:
+            NetworkImage('https://freesvg.org/img/abstract-user-flat-3.png'),
         minRadius: 15,
       ),
       SizedBox(width: 20),
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Fulano de Tal'),
+          Text('Usuário'),
+          /*TODO: listar nomes dos usuários usando id como parâmetro */
           Text(DateFormat.yMd().format(DateTime.now())),
         ],
       )

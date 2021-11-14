@@ -1,5 +1,6 @@
 import 'package:mobx/mobx.dart';
 import 'package:posts/models/post.dart';
+import 'package:posts/models/user.dart';
 
 import 'home_repository.dart';
 
@@ -12,9 +13,16 @@ abstract class HomeControllerBase with Store {
 
   @observable
   List<Post> posts = [];
+  List<User> users = [];
+  // List<Comments> comments = [];
 
   @action
   Future getPosts() async {
     posts = await _homeRepository.getPosts();
+  }
+
+  @action
+  Future getUsers() async {
+    users = await _homeRepository.getUsers();
   }
 }

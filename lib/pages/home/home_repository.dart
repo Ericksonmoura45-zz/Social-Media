@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:posts/models/post.dart';
+import 'package:posts/models/user.dart';
 
 class HomeRepository {
   final Dio dio = Dio();
@@ -12,5 +13,10 @@ class HomeRepository {
     return posts;
   }
 
-  getUser(int id) {}
+  Future<List<User>> getUsers() async {
+    final Response resp =
+        await dio.get('http://jsonplaceholder.typicode.com/users');
+    final users = (resp.data as List).map((p) => User.fromJson(p)).toList();
+    return users;
+  }
 }
