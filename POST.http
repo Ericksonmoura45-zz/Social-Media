@@ -1,0 +1,12 @@
+GET http://jsonplaceholder.typicode.com/posts HTTP/1.1
+content-type: application/json
+
+###
+
+GET http://jsonplaceholder.typicode.com/comments HTTP/1.1
+content-type: application/json
+
+###
+
+GET http://jsonplaceholder.typicode.com/users HTTP/1.1
+content-type: application/json
