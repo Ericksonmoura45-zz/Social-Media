@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:posts/models/post.dart';
+import 'package:posts/pages/post/post_details.dart/post_details.dart';
+import 'package:posts/pages/user/user_details.dart';
+import 'package:posts/widgets/user_widget.dart';
 
 class PostWidget extends StatelessWidget {
   final Post post;
@@ -17,19 +20,46 @@ class PostWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildUser(),
+              GestureDetector(
+                  child: UserWidget(user: post.user!),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (_) => UserDetail(user: post.user!),
+                      ),
+                    );
+                  }),
               SizedBox(height: 20),
-              _buildTitulo(),
-              SizedBox(height: 20),
-              Text(
-                post.body,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+              GestureDetector(
+                child: _buildBody(),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (_) => PostDetail(post: post),
+                    ),
+                  );
+                },
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Column _buildBody() {
+    return Column(
+      children: [
+        _buildTitulo(),
+        SizedBox(height: 20),
+        Text(
+          post.body,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ],
     );
   }
 
@@ -39,24 +69,4 @@ class PostWidget extends StatelessWidget {
       style: TextStyle(fontWeight: FontWeight.bold),
     );
   }
-}
-
-Widget _buildUser() {
-  return Row(
-    children: [
-      CircleAvatar(
-        backgroundImage:
-            NetworkImage('https://freesvg.org/img/abstract-user-flat-3.png'),
-        minRadius: 15,
-      ),
-      SizedBox(width: 20),
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Usuário'),
-          Text(DateFormat.yMd().format(DateTime.now())),
-        ],
-      )
-    ],
-  );
 }

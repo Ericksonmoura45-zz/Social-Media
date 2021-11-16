@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:posts/enum/status.dart';
 import 'package:posts/pages/post/post_details.dart/post_details.dart';
+import 'package:posts/pages/user/user_details.dart';
 import 'package:posts/widgets/post_widget.dart';
+import 'package:posts/pages/user/user_page.dart';
 
 import 'home_controller.dart';
 
@@ -17,9 +20,12 @@ class FeedPage extends StatelessWidget {
       appBar: AppBar(title: Text('Posts')),
       body: Observer(
         builder: (context) {
-          return ListView(
-            children: getListaPosts(controller, context),
-          );
+          if (controller.posts_status == Status.LOADED) {
+            return ListView(
+              children: getListaPosts(controller, context),
+            );
+          }
+          return CircularProgressIndicator();
         },
       ),
       drawer: Drawer(
@@ -82,6 +88,24 @@ class FeedPage extends StatelessWidget {
               );
             },
             child: PostWidget(post: p),
+          ),
+        )
+        .toList();
+  }
+
+  List<Widget> getListaUsers(HomeController controller, BuildContext context) {
+    return controller.users
+        .map(
+          (p) => GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (_) => UserDetail(user: p),
+                ),
+              );
+            },
+            child: UserWidget(user: p),
           ),
         )
         .toList();

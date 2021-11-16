@@ -9,18 +9,18 @@ part of 'home_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeController on HomeControllerBase, Store {
-  final _$postsAtom = Atom(name: 'HomeControllerBase.posts');
+  final _$posts_statusAtom = Atom(name: 'HomeControllerBase.posts_status');
 
   @override
-  List<Post> get posts {
-    _$postsAtom.reportRead();
-    return super.posts;
+  Status get posts_status {
+    _$posts_statusAtom.reportRead();
+    return super.posts_status;
   }
 
   @override
-  set posts(List<Post> value) {
-    _$postsAtom.reportWrite(value, super.posts, () {
-      super.posts = value;
+  set posts_status(Status value) {
+    _$posts_statusAtom.reportWrite(value, super.posts_status, () {
+      super.posts_status = value;
     });
   }
 
@@ -34,7 +34,7 @@ mixin _$HomeController on HomeControllerBase, Store {
   @override
   String toString() {
     return '''
-posts: ${posts}
+posts_status: ${posts_status}
     ''';
   }
 }

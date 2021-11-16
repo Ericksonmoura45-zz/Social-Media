@@ -1,6 +1,6 @@
 import 'address.dart';
 
-// DTO - Data Transfer Object
+/// DTO - Data Transfer Object
 class User {
   final int id;
   final String name;
