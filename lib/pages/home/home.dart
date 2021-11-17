@@ -54,7 +54,6 @@ class FeedPage extends StatelessWidget {
               trailing: Icon(Icons.person),
               onTap: () {
                 Navigator.pop(context);
-                controller.PostProcess();
               },
             ),
             ListTile(

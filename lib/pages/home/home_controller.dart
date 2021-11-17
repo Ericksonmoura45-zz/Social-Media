@@ -27,6 +27,7 @@ abstract class HomeControllerBase with Store {
     users = await _homeRepository.getUsers();
     comments = await _homeRepository.getComments();
     fillPostWithUser();
+    fillPostWithComment();
     posts_status = Status.LOADED;
   }
 
@@ -40,16 +41,17 @@ abstract class HomeControllerBase with Store {
   }
 
   ///Carregamos todos os posts referêntes ao usuário
-  fillPostWithUser() {
+  void fillPostWithUser() {
     for (var p in posts) {
       final User user = getUserById(p.userId);
       p.user = user;
     }
   }
 
-  fillPostWithComment() {
+  void fillPostWithComment() {
     for (var c in comments) {
       final Post post = getPostById(c.postId);
+      post.comments.add(c);
     }
   }
 }

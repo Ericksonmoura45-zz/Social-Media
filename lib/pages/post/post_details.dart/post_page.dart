@@ -1,10 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:posts/models/post.dart';
-import 'package:posts/pages/home/home_controller.dart';
-import 'package:posts/models/user.dart';
 import 'package:posts/widgets/comment_widget.dart';
 import 'package:posts/widgets/user_widget.dart';
 
@@ -17,9 +12,8 @@ class PostDetail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('Detalhes do Post')),
       body: Container(
-        padding: EdgeInsets.all(20),
-        child: Padding(
-          padding: EdgeInsets.all(10),
+        padding: EdgeInsets.all(30),
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -28,11 +22,25 @@ class PostDetail extends StatelessWidget {
               _buildTitulo(),
               SizedBox(height: 20),
               Text(post.body),
-              //adicionar CommentWidget
+              SizedBox(height: 20),
+              Text('Comentários:'),
+              SizedBox(height: 10),
+              _buildCommentList(),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildCommentList() {
+    List<CommentWidget> commentWidgets = [];
+    for (final c in post.comments) {
+      commentWidgets.add(CommentWidget(comment: c));
+    }
+
+    return Column(
+      children: commentWidgets,
     );
   }
 
