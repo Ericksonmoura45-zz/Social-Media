@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:posts/models/user.dart';
+import 'package:posts/pages/user/user_img.dart';
 
 class UserPage extends StatelessWidget {
   final User user;
@@ -35,8 +36,7 @@ class UserPage extends StatelessWidget {
         Row(
           children: [
             CircleAvatar(
-              backgroundImage: NetworkImage(
-                  'https://freesvg.org/img/abstract-user-flat-3.png'),
+              backgroundImage: NetworkImage(userImg(user.id)),
               minRadius: 50,
             ),
             SizedBox(width: 20),
@@ -49,6 +49,7 @@ class UserPage extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(width: 40),
             Column(
               children: [
                 Text(

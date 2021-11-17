@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:posts/models/user.dart';
+import 'package:posts/pages/user/user_img.dart';
 
 class UserWidget extends StatelessWidget {
   final User user;
@@ -11,8 +12,7 @@ class UserWidget extends StatelessWidget {
     return Row(
       children: [
         CircleAvatar(
-          backgroundImage:
-              NetworkImage('https://freesvg.org/img/abstract-user-flat-3.png'),
+          backgroundImage: NetworkImage(userImg(user.id)),
           minRadius: 15,
         ),
         SizedBox(width: 20),
@@ -23,7 +23,6 @@ class UserWidget extends StatelessWidget {
               user.name,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            /*TODO: listar nomes dos usuários usando id como parâmetro */
             Text(DateFormat.yMd().format(DateTime.now())),
           ],
         )

@@ -38,7 +38,6 @@ class PostDetail extends StatelessWidget {
     for (final c in post.comments) {
       commentWidgets.add(CommentWidget(comment: c));
     }
-
     return Column(
       children: commentWidgets,
     );
