@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:posts/models/post.dart';
-import 'package:posts/pages/post/post_details.dart/post_details.dart';
-import 'package:posts/pages/user/user_details.dart';
+import 'package:posts/pages/post/post_details.dart/post_page.dart';
+import 'package:posts/pages/user/user_page.dart';
 import 'package:posts/widgets/user_widget.dart';
 
 class PostWidget extends StatelessWidget {
@@ -26,7 +26,7 @@ class PostWidget extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (_) => UserDetail(user: post.user!),
+                        builder: (_) => UserPage(user: post.user!),
                       ),
                     );
                   }),

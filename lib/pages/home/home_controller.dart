@@ -2,9 +2,8 @@ import 'package:mobx/mobx.dart';
 import 'package:posts/enum/status.dart';
 import 'package:posts/models/post.dart';
 import 'package:posts/models/user.dart';
-
+import 'package:posts/models/comment.dart';
 import 'home_repository.dart';
-
 part 'home_controller.g.dart';
 
 class HomeController = HomeControllerBase with _$HomeController;
@@ -13,30 +12,44 @@ abstract class HomeControllerBase with Store {
   final _homeRepository = HomeRepository();
   @observable
   Status posts_status = Status.EMPTY;
+  /* enum para controle dos observables */
 
   List<Post> posts = [];
   List<User> users = [];
-  // List<Comments> comments = [];
+  List<Comment> comments = [];
 
   @action
 
-  /// Função para carregar dos os Posts da API
+  /// Função para carregar os Posts da API
   Future getPosts() async {
     posts_status = Status.LOADING;
     posts = await _homeRepository.getPosts();
     users = await _homeRepository.getUsers();
-    PostProcess();
+    comments = await _homeRepository.getComments();
+    fillPostWithUser();
     posts_status = Status.LOADED;
   }
 
+  ///Função para buscar o dados de um usuário por seu ID
   User getUserById(int userID) {
     return users.firstWhere((user) => user.id == userID);
   }
 
-  PostProcess() {
+  Post getPostById(int postID) {
+    return posts.firstWhere((post) => post.id == postID);
+  }
+
+  ///Carregamos todos os posts referêntes ao usuário
+  fillPostWithUser() {
     for (var p in posts) {
       final User user = getUserById(p.userId);
       p.user = user;
+    }
+  }
+
+  fillPostWithComment() {
+    for (var c in comments) {
+      final Post post = getPostById(c.postId);
     }
   }
 }

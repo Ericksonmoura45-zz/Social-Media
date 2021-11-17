@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:posts/enum/status.dart';
-import 'package:posts/pages/post/post_details.dart/post_details.dart';
-import 'package:posts/pages/user/user_details.dart';
-import 'package:posts/widgets/post_widget.dart';
+import 'package:posts/pages/post/post_details.dart/post_page.dart';
 import 'package:posts/pages/user/user_page.dart';
+import 'package:posts/widgets/post_widget.dart';
+import 'package:posts/widgets/user_widget.dart';
 
 import 'home_controller.dart';
 
@@ -15,11 +15,13 @@ class FeedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = HomeController();
     controller.getPosts();
-
+    /* Carregamos todos os posts */
     return Scaffold(
-      appBar: AppBar(title: Text('Posts')),
+      appBar: AppBar(title: Text('Publicações')),
       body: Observer(
         builder: (context) {
+          /*Para prosseguir, precisando saber se o estado do enum foi alterado com sucesso,
+          devido carregarmos os dados de forma assíncrona */
           if (controller.posts_status == Status.LOADED) {
             return ListView(
               children: getListaPosts(controller, context),
@@ -29,7 +31,6 @@ class FeedPage extends StatelessWidget {
         },
       ),
       drawer: Drawer(
-        //Menu superior
         child: ListView(
           children: [
             UserAccountsDrawerHeader(
@@ -41,11 +42,11 @@ class FeedPage extends StatelessWidget {
               ),
             ),
             ListTile(
-              //opções do menu superior
               title: Text('Inicio'),
               trailing: Icon(Icons.home),
               onTap: () {
-                Navigator.pop(context); //fecha drawer ao clicar fora
+                Navigator.pop(context);
+                controller.getPosts();
               },
             ),
             ListTile(
@@ -53,6 +54,7 @@ class FeedPage extends StatelessWidget {
               trailing: Icon(Icons.person),
               onTap: () {
                 Navigator.pop(context);
+                controller.PostProcess();
               },
             ),
             ListTile(
@@ -71,6 +73,13 @@ class FeedPage extends StatelessWidget {
             )
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          controller.getPosts();
+        },
+        child: Icon(Icons.home),
+        backgroundColor: Colors.blue,
       ),
     );
   }
@@ -101,7 +110,7 @@ class FeedPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute<void>(
-                  builder: (_) => UserDetail(user: p),
+                  builder: (_) => UserPage(user: p),
                 ),
               );
             },

@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:posts/models/post.dart';
 import 'package:posts/pages/home/home_controller.dart';
 import 'package:posts/models/user.dart';
+import 'package:posts/widgets/comment_widget.dart';
 import 'package:posts/widgets/user_widget.dart';
 
 class PostDetail extends StatelessWidget {
@@ -25,6 +28,7 @@ class PostDetail extends StatelessWidget {
               _buildTitulo(),
               SizedBox(height: 20),
               Text(post.body),
+              //adicionar CommentWidget
             ],
           ),
         ),

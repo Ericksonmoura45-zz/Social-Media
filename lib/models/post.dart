@@ -1,11 +1,14 @@
 import 'package:posts/models/user.dart';
 
+import 'comment.dart';
+
 class Post {
   final int userId;
   final int id;
   final String title;
   final String body;
   User? user;
+  List<Comment> comments = [];
 
   Post({
     required this.userId,
