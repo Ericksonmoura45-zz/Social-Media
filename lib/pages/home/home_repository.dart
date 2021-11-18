@@ -5,7 +5,8 @@ import 'package:posts/models/comment.dart';
 
 class HomeRepository {
   final Dio dio = Dio();
-
+  /* Uso da Networking library(API) Dio para receber os dados do cliente 
+  https(POST.https) e usamos o método dio.get() para tratarmos o JSON como uma list em flutter*/
   Future<List<Post>> getPosts() async {
     final Response resp =
         await dio.get('http://jsonplaceholder.typicode.com/posts');
@@ -29,3 +30,4 @@ class HomeRepository {
     return comment;
   }
 }
+// Referência de usos: https://pub.dev/packages/dio

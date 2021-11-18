@@ -9,7 +9,7 @@ import 'package:posts/widgets/user_widget.dart';
 class PostWidget extends StatelessWidget {
   final Post post;
   const PostWidget({Key? key, required this.post}) : super(key: key);
-
+  /* Widget responsável por criar o corpo dos posts */
   @override
   Widget build(BuildContext context) {
     return Padding(

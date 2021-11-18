@@ -5,7 +5,7 @@ import 'package:posts/models/comment.dart';
 class CommentWidget extends StatelessWidget {
   final Comment comment;
   const CommentWidget({Key? key, required this.comment}) : super(key: key);
-
+  /* Widget para criar a estrutura que comportará os comentários de um post */
   @override
   Widget build(BuildContext context) {
     return Card(

@@ -3,6 +3,7 @@ import 'package:posts/models/post.dart';
 import 'package:posts/widgets/comment_widget.dart';
 import 'package:posts/widgets/user_widget.dart';
 
+/* Página de detalhes do post */
 class PostDetail extends StatelessWidget {
   final Post post;
   const PostDetail({Key? key, required this.post}) : super(key: key);
@@ -33,6 +34,7 @@ class PostDetail extends StatelessWidget {
     );
   }
 
+  /*Widget para buscar todos os posts relacionados a esse usuário*/
   Widget _buildCommentList() {
     List<CommentWidget> commentWidgets = [];
     for (final c in post.comments) {
@@ -43,6 +45,7 @@ class PostDetail extends StatelessWidget {
     );
   }
 
+  /*Widget para buscar o nome desse usuário*/
   Widget _buildTitulo() {
     return Text(
       post.title,

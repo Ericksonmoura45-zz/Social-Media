@@ -14,6 +14,7 @@ abstract class HomeControllerBase with Store {
   Status posts_status = Status.EMPTY;
   /* enum para controle dos observables */
 
+  /*Adicionando todos os dados da API a listas */
   List<Post> posts = [];
   List<User> users = [];
   List<Comment> comments = [];
@@ -36,11 +37,12 @@ abstract class HomeControllerBase with Store {
     return users.firstWhere((user) => user.id == userID);
   }
 
+  ///Função para resgatar o post pelo seu postID
   Post getPostById(int postID) {
     return posts.firstWhere((post) => post.id == postID);
   }
 
-  ///Carregamos todos os posts referêntes ao usuário
+  ///Carregamos todos os posts referentes ao usuário
   void fillPostWithUser() {
     for (var p in posts) {
       final User user = getUserById(p.userId);
@@ -48,6 +50,7 @@ abstract class HomeControllerBase with Store {
     }
   }
 
+  ///Carregamos todos os comentários referentes ao post
   void fillPostWithComment() {
     for (var c in comments) {
       final Post post = getPostById(c.postId);

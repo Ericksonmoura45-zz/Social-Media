@@ -7,7 +7,7 @@ import 'package:posts/pages/user/user_img.dart';
 class UserPage extends StatelessWidget {
   final User user;
   const UserPage({Key? key, required this.user}) : super(key: key);
-
+  /* Página com detalhes sobre o usuário */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +30,8 @@ class UserPage extends StatelessWidget {
     );
   }
 
+  /* Widget para expor na tela todas a informações desse usuário */
+  //TODO melhorar layout!
   Widget _buildUserProfile() {
     return Column(
       children: [

@@ -73,6 +73,7 @@ class FeedPage extends StatelessWidget {
           ],
         ),
       ),
+      /* A ideia desse botão é voltar ao topo da página com os dados atualizados */
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           controller.getPosts();
@@ -83,6 +84,8 @@ class FeedPage extends StatelessWidget {
     );
   }
 
+/* Widget criado com intuito de tornar o post interativo ao toque, 
+   nos levando a página de detalhes desse post */
   List<Widget> getListaPosts(HomeController controller, BuildContext context) {
     return controller.posts
         .map(
@@ -101,6 +104,8 @@ class FeedPage extends StatelessWidget {
         .toList();
   }
 
+/* Widget criado com intuito de tornar o nome do usuário(no post) interativo ao toque, 
+ nos levando a página de detalhes desse usuário */
   List<Widget> getListaUsers(HomeController controller, BuildContext context) {
     return controller.users
         .map(

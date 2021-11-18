@@ -1,3 +1,4 @@
+/* Função para atribuir uma imagem a cada usuário de acordo com seu número de ID */
 String userImg(int userId) {
   switch (userId) {
     case 1:
